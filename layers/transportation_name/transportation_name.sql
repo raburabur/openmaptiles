@@ -88,7 +88,7 @@ FROM (
                 NULL::int AS level,
                 NULL::boolean AS indoor
          FROM osm_transportation_name_linestring_gen1
-         WHERE zoom_level BETWEEN 9 AND 11
+         WHERE zoom_level BETWEEN 9 AND 10
          UNION ALL
 
          -- etldoc: osm_transportation_name_linestring ->  layer_transportation_name:z12
@@ -105,7 +105,7 @@ FROM (
                 "level",
                 indoor
          FROM osm_transportation_name_linestring
-         WHERE zoom_level = 12
+         WHERE zoom_level BETWEEN 11 AND 12
            AND LineLabel(zoom_level, COALESCE(tags->'name', ref), geometry)
            AND NOT highway_is_link(highway)
            AND
